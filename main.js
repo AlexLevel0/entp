@@ -1,36 +1,12 @@
 const questions = [
-  {
-    text: "退屈な会話になると、別の角度からツッコミたくなる",
-    point: 2
-  },
-  {
-    text: "正しいかどうかより、まず面白いかどうかを見てしまう",
-    point: 2
-  },
-  {
-    text: "議論で勝ちたいというより、相手の理屈を崩したくなる",
-    point: 2
-  },
-  {
-    text: "思いついた企画を最後までやる前に、次の企画を思いつく",
-    point: 2
-  },
-  {
-    text: "みんなが当然と思っているルールに『本当に？』と思う",
-    point: 2
-  },
-  {
-    text: "相手を怒らせるつもりはないのに、なぜか煽ってると言われる",
-    point: 2
-  },
-  {
-    text: "説明を聞いてる途中で『つまりこういうこと？』と先に結論を作る",
-    point: 2
-  },
-  {
-    text: "急に変な企画を思いついて、なぜか本当に作り始める",
-    point: 2
-  }
+  "退屈な会話になると、別の角度からツッコミたくなる",
+  "正しいかどうかより、まず面白いかどうかを見てしまう",
+  "議論で勝ちたいというより、相手の理屈を崩したくなる",
+  "思いついた企画を最後までやる前に、次の企画を思いつく",
+  "みんなが当然と思っているルールに『本当に？』と思う",
+  "相手を怒らせるつもりはないのに、なぜか煽ってると言われる",
+  "説明を聞いてる途中で『つまりこういうこと？』と先に結論を作る",
+  "急に変な企画を思いついて、なぜか本当に作り始める"
 ];
 
 let currentQuestion = 0;
@@ -42,6 +18,142 @@ const yesButton = document.querySelector("#yesButton");
 const maybeButton = document.querySelector("#maybeButton");
 const noButton = document.querySelector("#noButton");
 const result = document.querySelector("#result");
+
+function showQuestion() {
+  quizCount.textContent = `Q${currentQuestion + 1} / ${questions.length}`;
+  quizQuestion.textContent = questions[currentQuestion];
+}
+
+function answerQuiz(point) {
+  score += point;
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) {
+    showQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function getDiagnosis(score) {
+  const percent = Math.round((score / 16) * 100);
+
+  if (score <= 2) {
+    return {
+      title: "平和な一般人",
+      percent,
+      catch: "ENTP度はかなり低め。",
+      text: "ちゃんと空気を読めるし、無駄に議論を始めないタイプ。ENTPの暴れ方を見て『元気だな』と思う側。"
+    };
+  }
+
+  if (score <= 4) {
+    return {
+      title: "穏やかな観察者",
+      percent,
+      catch: "ENTPを眺める才能あり。",
+      text: "自分から火種を作るタイプではないけど、面白い話にはちゃんと反応する。安全圏からカオスを楽しめる人。"
+    };
+  }
+
+  if (score <= 6) {
+    return {
+      title: "擬態ENTP",
+      percent,
+      catch: "ちょっとENTPっぽい。",
+      text: "発想力やツッコミ力はある。でもまだ理性が勝ってる。場を荒らす前に一回止まれる、かなり偉いタイプ。"
+    };
+  }
+
+  if (score <= 8) {
+    return {
+      title: "ひらめき型ENTP",
+      percent,
+      catch: "アイデアで場を動かすタイプ。",
+      text: "変な企画、謎の提案、急な方向転換が得意。思いついた瞬間が一番楽しい。継続は知らん。"
+    };
+  }
+
+  if (score <= 10) {
+    return {
+      title: "屁理屈クリエイター",
+      percent,
+      catch: "理屈をこねる才能あり。",
+      text: "普通の話も別角度からこね始めるタイプ。相手を困らせるつもりはないのに、気づいたら議論になってる。"
+    };
+  }
+
+  if (score <= 12) {
+    return {
+      title: "口だけ革命家",
+      percent,
+      catch: "発想だけなら世界を変えてる。",
+      text: "『これ作ったら面白くね？』が多いタイプ。実行する時もあるけど、次の面白そうなことにすぐ浮気する。"
+    };
+  }
+
+  if (score <= 14) {
+    return {
+      title: "カオス討論家",
+      percent,
+      catch: "かなり危険なENTP圏内。",
+      text: "議論を遊び場にしてるタイプ。相手の前提を壊しながら、なぜか楽しそうにしてる。周囲はちょっと疲れる。"
+    };
+  }
+
+  return {
+    title: "純正ENTP",
+    percent,
+    catch: "ENTP度、限界突破。",
+    text: "退屈を壊し、前提を疑い、思いつきで場を動かすタイプ。もはや議論の火種を持ち歩いている。危ない。"
+  };
+}
+
+function showResult() {
+  document.querySelector(".quiz-card").style.display = "none";
+
+  const diagnosis = getDiagnosis(score);
+
+  const shareText = `私は「${diagnosis.title}」でした！\nENTP度：${diagnosis.percent}%\n${diagnosis.catch}\n#ENTPJP\nhttps://entp.jp/`;
+
+  result.innerHTML = `
+    <h3>${diagnosis.title}</h3>
+    <p class="score">ENTP度：${diagnosis.percent}%</p>
+    <p><strong>${diagnosis.catch}</strong></p>
+    <p>${diagnosis.text}</p>
+
+    <div class="share-box">
+      <p>シェア用テキスト</p>
+      <textarea readonly>${shareText}</textarea>
+      <button type="button" id="copyShareButton">コピーする</button>
+    </div>
+
+    <button type="button" id="retryButton">もう一回やる</button>
+  `;
+
+  document.querySelector("#retryButton").addEventListener("click", () => {
+    currentQuestion = 0;
+    score = 0;
+    result.innerHTML = "";
+    document.querySelector(".quiz-card").style.display = "block";
+    showQuestion();
+  });
+
+  document.querySelector("#copyShareButton").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(shareText);
+      document.querySelector("#copyShareButton").textContent = "コピーした！";
+    } catch {
+      document.querySelector("#copyShareButton").textContent = "コピー失敗";
+    }
+  });
+}
+
+yesButton.addEventListener("click", () => answerQuiz(2));
+maybeButton.addEventListener("click", () => answerQuiz(1));
+noButton.addEventListener("click", () => answerQuiz(0));
+
+showQuestion();
 
 function showQuestion() {
   const q = questions[currentQuestion];
