@@ -912,3 +912,30 @@ footer {
   content: "✋";
   margin-right: 6px;
 }
+
+/* quiz flip animation */
+
+.quiz-card {
+  transition: transform 0.22s ease, opacity 0.22s ease;
+}
+
+.quiz-card.flip-out {
+  transform: translateX(-18px) rotate(-2deg);
+  opacity: 0;
+}
+
+.quiz-card.flip-in {
+  animation: quizFlipIn 0.25s ease;
+}
+
+@keyframes quizFlipIn {
+  from {
+    transform: translateX(18px) rotate(2deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
+  }
+}
