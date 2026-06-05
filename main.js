@@ -388,29 +388,78 @@ function judgeDebate() {
   score += Math.min(40, text.length);
 
   const entpWords = [
-    "でも",
-    "逆に",
-    "そもそも",
-    "つまり",
-    "例えば",
-    "なぜなら",
-    "本当に",
-    "前提",
-    "可能性",
-    "視点",
-    "論理",
-    "矛盾"
-  ];
+  "でも",
+  "逆に",
+  "そもそも",
+  "つまり",
+  "例えば",
+  "なぜなら",
+  "本当に",
+  "前提",
+  "可能性",
+  "視点",
+  "論理",
+  "矛盾",
+  "仮に",
+  "一方で",
+  "だから",
+  "むしろ",
+  "要するに",
+  "根拠",
+  "証拠",
+  "例外",
+  "比較",
+  "構造",
+  "本質",
+  "問題",
+  "定義",
+  "目的",
+  "効率",
+  "リスク",
+  "メリット",
+  "デメリット",
+  "合理的",
+  "感情論",
+  "別に",
+  "それって",
+  "なんで",
+  "どうせ",
+  "ありえる",
+  "おかしくない",
+  "破綻",
+  "反論",
+  "結論"
+];
 
   entpWords.forEach((word) => {
     if (text.includes(word)) {
-      score += 5;
+      score += 3;
     }
   });
 
-  if (text.includes("？") || text.includes("?")) {
-    score += 8;
-  }
+  if (text.includes("そもそも") || text.includes("前提")) {
+  score += 8;
+}
+
+if (text.includes("逆に") || text.includes("むしろ")) {
+  score += 6;
+}
+
+if (text.includes("例えば") || text.includes("仮に")) {
+  score += 6;
+}
+
+if (text.includes("？") || text.includes("?")) {
+  score += 8;
+}
+
+if (text.length >= 80) {
+  score += 10;
+}
+
+if (text.length >= 140) {
+  score += 10;
+}
 
   if (text.includes("ｗ") || text.includes("笑")) {
     score += 5;
@@ -437,12 +486,38 @@ function judgeDebate() {
     comment = "危険。議論を遊び場にしてる。相手の前提ごと爆破するタイプ。";
   }
 
-  debateResult.innerHTML = `
-    <h3>${title}</h3>
-    <p class="score">ENTPっぽさ：${score}%</p>
-    <p>${comment}</p>
-  `;
-}
+  const shareText = `ディベート結果は「${title}」でした！
+ENTPっぽさ：${score}%
+${comment}
+#ENTPJP
+https://entp.jp/`;
+
+const xShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+
+debateResult.innerHTML = `
+  <h3>${title}</h3>
+  <p class="score">ENTPっぽさ：${score}%</p>
+  <p>${comment}</p>
+
+  <div class="share-box debate-share-box">
+    <p>シェア用テキスト</p>
+    <textarea readonly>${shareText}</textarea>
+
+    <div class="share-actions">
+      <button type="button" id="copyDebateShareButton">コピーする</button>
+      <a class="share-link" href="${xShareUrl}" target="_blank" rel="noopener">Xでシェア</a>
+    </div>
+  </div>
+`;
+
+document.querySelector("#copyDebateShareButton").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(shareText);
+    document.querySelector("#copyDebateShareButton").textContent = "コピーした！";
+  } catch {
+    document.querySelector("#copyDebateShareButton").textContent = "コピー失敗";
+  }
+});
 
 function nextDebate() {
   let nextIndex = Math.floor(Math.random() * debateTopics.length);
