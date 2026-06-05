@@ -967,3 +967,33 @@ footer {
     width: 100%;
   }
 }
+
+.share-actions .share-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 22px;
+  border: 4px solid #171717;
+  border-radius: 16px;
+  background: #171717;
+  color: #ffffff;
+  font-weight: 1000;
+  box-shadow: 5px 5px 0 #171717;
+  text-decoration: none;
+}
+
+.share-actions .share-link:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 #171717;
+}
+
+.share-actions button {
+  background: #2dd4bf !important;
+  color: #171717 !important;
+}
+
+.share-actions a.share-link {
+  background: #171717 !important;
+  color: #ffffff !important;
+}
