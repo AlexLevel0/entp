@@ -407,20 +407,20 @@ https://entp.jp/`;
   const xShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
 
   debateResult.innerHTML = `
-    <h3>${title}</h3>
-    <p class="score">ENTPっぽさ：${debateScore}%</p>
-    <p>${comment}</p>
+  <h3>${title}</h3>
+  <p class="score">ENTPっぽさ：${debateScore}%</p>
+  <p>${comment}</p>
 
-    <div class="share-box debate-share-box">
-      <p>シェア用テキスト</p>
-      <textarea readonly>${shareText}</textarea>
+  <div class="share-box debate-share-box">
+    <p>シェア用テキスト</p>
+    <textarea readonly>${shareText}</textarea>
 
-      <div class="share-actions">
-        <button type="button" id="copyDebateShareButton">コピーする</button>
-        <a class="share-link" href="${xShareUrl}" target="_blank" rel="noopener">Xでシェア</a>
-      </div>
+    <div class="share-actions">
+      <button type="button" id="copyDebateShareButton">コピーする</button>
+      <a class="share-link" href="${xShareUrl}" target="_blank" rel="noopener">Xでシェア</a>
     </div>
-  `;
+  </div>
+`;
 
   document.querySelector("#copyDebateShareButton").addEventListener("click", async () => {
     try {
