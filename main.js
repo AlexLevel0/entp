@@ -73,8 +73,10 @@ debateTopics.forEach((topic) => {
 
   box.innerHTML = `
     <h3>${topic.title}</h3>
-    <button>${topic.a}</button>
-    <button>${topic.b}</button>
+    <div class="debate-buttons">
+      <button type="button">${topic.a}</button>
+      <button type="button">${topic.b}</button>
+    </div>
     <textarea placeholder="ここに主張を書け。遠慮したら負け。"></textarea>
   `;
 
