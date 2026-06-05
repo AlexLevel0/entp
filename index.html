@@ -113,9 +113,18 @@
         <h2>ENTP度診断</h2>
         <p>当てはまるものを選んで、あなたのENTP度を見てみよう。</p>
 
-        <div id="quiz"></div>
-        <button id="resultButton">結果を見る</button>
-        <div id="result" class="result"></div>
+        <div class="quiz-card">
+  <p class="quiz-count" id="quizCount">Q1 / 8</p>
+  <h3 id="quizQuestion">質問が入ります</h3>
+
+  <div class="quiz-buttons">
+    <button type="button" id="yesButton">わかる</button>
+    <button type="button" id="maybeButton">ちょっとわかる</button>
+    <button type="button" id="noButton">ない</button>
+  </div>
+</div>
+
+<div id="result" class="result"></div>
       </article>
 
       <article class="big-card pink" id="debate">
