@@ -1,1 +1,64 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENTP.JP | ENTPのための謎サイト</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <p class="badge">ENTP.JP</p>
+    <h1>ENTPのための、謎に本気なサイト。</h1>
+    <p class="lead">
+      議論、発想、屁理屈、好奇心。<br>
+      ここはENTPを研究するための遊び場です。
+    </p>
 
+    <div class="buttons">
+      <a href="#diagnosis">ENTP度診断</a>
+      <a href="#debate">ディベートゲーム</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>ENTPとは？</h2>
+      <p>
+        ENTPは、ただ議論が好きな人ではありません。
+        退屈な前提を壊し、新しい可能性を見つけるタイプです。
+      </p>
+      <ul>
+        <li>アイデアが出るのが早い</li>
+        <li>常識を疑うのが好き</li>
+        <li>議論で思考が加速する</li>
+        <li>でも飽きるのも早い</li>
+      </ul>
+    </section>
+
+    <section class="card" id="diagnosis">
+      <h2>ENTP度診断</h2>
+      <p>当てはまるものを選んでください。</p>
+
+      <div id="quiz"></div>
+
+      <button id="resultButton">結果を見る</button>
+
+      <div id="result" class="result"></div>
+    </section>
+
+    <section class="card" id="debate">
+      <h2>ディベートゲーム</h2>
+      <p>お題を選んで、どちらかの立場で主張してみよう。</p>
+
+      <div id="debateGame"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© ENTP.JP</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
