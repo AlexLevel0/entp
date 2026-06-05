@@ -188,6 +188,20 @@ const debateTopics = [
   { title: "最強のひらめき vs 最強の実行力", a: "最強のひらめき", b: "最強の実行力" }
 ];
 
+const todayTopic = document.querySelector("#todayTopic");
+
+function showTodayTopic() {
+  if (!todayTopic) return;
+
+  const today = new Date();
+  const seed = today.getFullYear() + today.getMonth() + today.getDate();
+  const topic = debateTopics[seed % debateTopics.length];
+
+  todayTopic.textContent = topic.title;
+}
+
+showTodayTopic();
+
 let currentDebate = 0;
 let selectedChoice = "";
 
