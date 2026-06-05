@@ -7,72 +7,147 @@
   <title>ENTP.JP | ENTPのための謎サイト</title>
   <meta name="description" content="ENTP紹介、ENTP度診断、ディベートゲームで遊べる謎サイト。議論、発想、屁理屈、カオスを楽しむENTP研究所。">
 
-  <!-- favicon -->
-  <link rel="icon" href="img/icon/favicon.png" type="image/png">
+  <link rel="icon" href="/img/icon/favicon.png?v=1" type="image/png">
 
-  <!-- OGP -->
   <meta property="og:title" content="ENTP.JP | ENTPのための謎サイト">
   <meta property="og:description" content="ENTP紹介、ENTP度診断、ディベートゲームで遊べる謎サイト。">
-  <meta property="og:image" content="https://entp.jp/img/ogp/ogp.png">
+  <meta property="og:image" content="https://entp.jp/img/ogp/ogp.png?v=2">
   <meta property="og:url" content="https://entp.jp/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ENTP.JP">
 
-  <!-- X / Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ENTP.JP | ENTPのための謎サイト">
   <meta name="twitter:description" content="ENTP紹介、ENTP度診断、ディベートゲームで遊べる謎サイト。">
-  <meta name="twitter:image" content="https://entp.jp/img/ogp/ogp.png">
+  <meta name="twitter:image" content="https://entp.jp/img/ogp/ogp.png?v=2">
 
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <header class="hero">
-    <p class="badge">ENTP.JP</p>
-    <h1>ENTPのための、謎に本気なサイト。</h1>
-    <p class="lead">
-      議論、発想、屁理屈、好奇心。<br>
-      ここはENTPを研究するための遊び場です。
-    </p>
 
-    <div class="buttons">
+<body>
+  <header class="site-header">
+    <a class="logo" href="#">
+      <img src="/img/icon/favicon.png" alt="ENTP.JP logo">
+      <span>ENTP<span>.JP</span></span>
+    </a>
+
+    <nav class="nav">
+      <a href="#about">ENTPとは？</a>
       <a href="#diagnosis">ENTP度診断</a>
       <a href="#debate">ディベートゲーム</a>
-    </div>
+    </nav>
   </header>
 
-  <main>
-    <section class="card">
-      <h2>ENTPとは？</h2>
-      <p>
-        ENTPは、ただ議論が好きな人ではありません。
-        退屈な前提を壊し、新しい可能性を見つけるタイプです。
+  <section class="hero">
+    <div class="sticker sticker-left">Why not?</div>
+    <div class="sticker sticker-right">Let's debate.</div>
+
+    <div class="hero-text">
+      <p class="eyebrow">ENTP.JP</p>
+      <h1>
+        ENTPのための、<br>
+        <span>謎に本気</span>なサイト。
+      </h1>
+      <p class="lead">
+        考えて、ぶつかって、笑って、ひらめいて。<br>
+        議論もアイデアも、カオスも楽しめる場所へようこそ！
       </p>
-      <ul>
-        <li>アイデアが出るのが早い</li>
-        <li>常識を疑うのが好き</li>
-        <li>議論で思考が加速する</li>
-        <li>でも飽きるのも早い</li>
-      </ul>
+
+      <div class="hero-buttons">
+        <a href="#diagnosis" class="btn primary">ENTP度診断</a>
+        <a href="#debate" class="btn secondary">ディベートゲーム</a>
+      </div>
+    </div>
+
+    <div class="hero-character">
+      <div class="face">
+        <div class="hair"></div>
+        <div class="glasses">
+          <span></span>
+          <span></span>
+        </div>
+        <div class="mouth"></div>
+      </div>
+      <div class="speech">Interesting...</div>
+    </div>
+  </section>
+
+  <main>
+    <section class="about" id="about">
+      <div class="section-title">
+        <p>What is ENTP?</p>
+        <h2>ENTPってどんなタイプ？</h2>
+      </div>
+
+      <p class="about-text">
+        アイデアと議論で世界を動かす、ひらめき型の討論家タイプ。
+        型にはまるなんて、ナンセンス。
+      </p>
+
+      <div class="features">
+        <article>
+          <div class="icon">💡</div>
+          <h3>発想力</h3>
+          <p>アイデアが次々と湧いてくる。</p>
+        </article>
+
+        <article>
+          <div class="icon">💬</div>
+          <h3>議論好き</h3>
+          <p>話しながら思考が加速する。</p>
+        </article>
+
+        <article>
+          <div class="icon">⏳</div>
+          <h3>退屈嫌い</h3>
+          <p>同じことの繰り返しが苦手。</p>
+        </article>
+
+        <article>
+          <div class="icon">🌀</div>
+          <h3>カオス</h3>
+          <p>予測不能さすら楽しむ。</p>
+        </article>
+      </div>
     </section>
 
-    <section class="card" id="diagnosis">
-      <h2>ENTP度診断</h2>
-      <p>当てはまるものを選んでください。</p>
+    <section class="cards">
+      <article class="big-card purple">
+        <p class="tag">まずはここから</p>
+        <h2>ENTP紹介</h2>
+        <p>
+          ENTPの特徴、強み、弱み、恋愛、仕事まで、
+          ちょっとふざけながら解説。
+        </p>
+        <a href="#about">詳しく見る</a>
+      </article>
 
-      <div id="quiz"></div>
+      <article class="big-card green" id="diagnosis">
+        <p class="tag">自分をチェック</p>
+        <h2>ENTP度診断</h2>
+        <p>当てはまるものを選んで、あなたのENTP度を見てみよう。</p>
 
-      <button id="resultButton">結果を見る</button>
+        <div id="quiz"></div>
+        <button id="resultButton">結果を見る</button>
+        <div id="result" class="result"></div>
+      </article>
 
-      <div id="result" class="result"></div>
+      <article class="big-card pink" id="debate">
+        <p class="tag">議論で遊べ</p>
+        <h2>ディベートゲーム</h2>
+        <p>テーマを選んで、どちらかの立場で主張してみよう。</p>
+
+        <div id="debateGame"></div>
+      </article>
     </section>
 
-    <section class="card" id="debate">
-      <h2>ディベートゲーム</h2>
-      <p>お題を選んで、どちらかの立場で主張してみよう。</p>
-
-      <div id="debateGame"></div>
+    <section class="community">
+      <div>
+        <p class="eyebrow">Join us!</p>
+        <h2>話そう、つながろう、ひらめこう！</h2>
+        <p>ENTP仲間とアイデアをシェアできる場所を、いつか作る予定。</p>
+      </div>
+      <a href="#" class="btn yellow">Coming Soon</a>
     </section>
   </main>
 
