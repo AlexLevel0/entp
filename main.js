@@ -155,7 +155,11 @@ const badgesHtml = diagnosis.badges
   .map((badge) => `<span>${badge}</span>`)
   .join("");
   
-  result.innerHTML = `
+  const badgesHtml = diagnosis.badges
+  .map((badge) => `<span>${badge}</span>`)
+  .join("");
+
+result.innerHTML = `
   <div class="result-card">
     <p class="result-label">あなたの結果</p>
 
@@ -169,8 +173,8 @@ const badgesHtml = diagnosis.badges
     <p class="result-text">${diagnosis.text}</p>
 
     <div class="result-badges">
-  ${badgesHtml}
-</div>
+      ${badgesHtml}
+    </div>
   </div>
 
   <div class="share-box">
