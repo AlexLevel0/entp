@@ -701,3 +701,37 @@ footer {
   margin-top: 12px;
   background: #2dd4bf;
 }
+.share-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.share-actions button,
+.share-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 22px;
+  border: 4px solid #171717;
+  border-radius: 16px;
+  color: #171717;
+  font-weight: 1000;
+  box-shadow: 5px 5px 0 #171717;
+}
+
+.share-actions button {
+  background: #2dd4bf;
+}
+
+.share-link {
+  background: #171717;
+  color: #ffffff;
+}
+
+.share-link:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 #171717;
+}
