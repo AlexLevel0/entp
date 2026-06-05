@@ -189,18 +189,30 @@ const debateTopics = [
 ];
 
 const todayTopic = document.querySelector("#todayTopic");
+const playTodayTopic = document.querySelector("#playTodayTopic");
+
+let todayTopicIndex = 0;
 
 function showTodayTopic() {
   if (!todayTopic) return;
 
   const today = new Date();
   const seed = today.getFullYear() + today.getMonth() + today.getDate();
-  const topic = debateTopics[seed % debateTopics.length];
 
+  todayTopicIndex = seed % debateTopics.length;
+
+  const topic = debateTopics[todayTopicIndex];
   todayTopic.textContent = topic.title;
 }
 
 showTodayTopic();
+
+if (playTodayTopic) {
+  playTodayTopic.addEventListener("click", () => {
+    currentDebate = todayTopicIndex;
+    showDebate();
+  });
+}
 
 let currentDebate = 0;
 let selectedChoice = "";
