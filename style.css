@@ -735,3 +735,45 @@ footer {
   transform: translate(2px, 2px);
   box-shadow: 3px 3px 0 #171717;
 }
+
+.today-topic {
+  width: min(100%, 680px);
+  margin: 34px auto 0;
+  padding: 22px;
+  border: 4px solid #171717;
+  border-radius: 26px;
+  background: #ffffff;
+  color: #171717;
+  box-shadow: 7px 7px 0 #171717;
+}
+
+.today-topic p {
+  width: fit-content;
+  margin: 0 0 10px;
+  padding: 6px 12px;
+  border: 3px solid #171717;
+  border-radius: 999px;
+  background: #facc15;
+  font-weight: 1000;
+}
+
+.today-topic h2 {
+  margin: 0;
+  font-size: clamp(22px, 4vw, 34px);
+  line-height: 1.35;
+}
+
+.today-link {
+  display: inline-flex;
+  margin-top: 16px;
+  min-height: 46px;
+  padding: 0 18px;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #171717;
+  border-radius: 14px;
+  background: #2dd4bf;
+  color: #171717;
+  font-weight: 1000;
+  box-shadow: 4px 4px 0 #171717;
+}
