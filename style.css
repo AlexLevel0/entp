@@ -507,3 +507,10 @@ footer {
     padding: 22px;
   }
 }
+
+/* 画像が画面からはみ出ないようにする */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
