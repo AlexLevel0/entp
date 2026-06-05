@@ -115,7 +115,8 @@ function showResult() {
   const diagnosis = getDiagnosis(score);
 
   const shareText = `私は「${diagnosis.title}」でした！\nENTP度：${diagnosis.percent}%\n${diagnosis.catch}\n#ENTPJP\nhttps://entp.jp/`;
-
+const xShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+  
   result.innerHTML = `
     <h3>${diagnosis.title}</h3>
     <p class="score">ENTP度：${diagnosis.percent}%</p>
