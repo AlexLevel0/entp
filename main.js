@@ -6,7 +6,11 @@ const questions = [
   "みんなが当然と思っているルールに『本当に？』と思う",
   "相手を怒らせるつもりはないのに、なぜか煽ってると言われる",
   "説明を聞いてる途中で『つまりこういうこと？』と先に結論を作る",
-  "急に変な企画を思いついて、なぜか本当に作り始める"
+  "急に変な企画を思いついて、なぜか本当に作り始める",
+  "相手の意見を聞くと、賛成より先に反例を探してしまう",
+  "普通に褒めるより、少し茶化した方が楽しい",
+  "ルールを見ると、破りたいというより抜け道を探したくなる",
+  "ひとつの答えより、いくつも可能性を出す方が好き"
 ];
 
 let currentQuestion = 0;
@@ -36,9 +40,9 @@ function answerQuiz(point) {
 }
 
 function getDiagnosis(score) {
-  const percent = Math.round((score / 16) * 100);
+  const percent = Math.round((score / 24) * 100);
 
-  if (score <= 2) {
+  if (score <= 3) {
     return {
       title: "平和な一般人",
       percent,
@@ -48,7 +52,7 @@ function getDiagnosis(score) {
     };
   }
 
-  if (score <= 4) {
+  if (score <= 6) {
     return {
       title: "穏やかな観察者",
       percent,
@@ -58,7 +62,7 @@ function getDiagnosis(score) {
     };
   }
 
-  if (score <= 6) {
+  if (score <= 9) {
     return {
       title: "擬態ENTP",
       percent,
@@ -68,7 +72,7 @@ function getDiagnosis(score) {
     };
   }
 
-  if (score <= 8) {
+  if (score <= 12) {
     return {
       title: "ひらめき型ENTP",
       percent,
@@ -78,7 +82,7 @@ function getDiagnosis(score) {
     };
   }
 
-  if (score <= 10) {
+  if (score <= 15) {
     return {
       title: "屁理屈クリエイター",
       percent,
@@ -88,7 +92,7 @@ function getDiagnosis(score) {
     };
   }
 
-  if (score <= 12) {
+  if (score <= 18) {
     return {
       title: "口だけ革命家",
       percent,
@@ -98,7 +102,7 @@ function getDiagnosis(score) {
     };
   }
 
-  if (score <= 14) {
+  if (score <= 21) {
     return {
       title: "カオス討論家",
       percent,
