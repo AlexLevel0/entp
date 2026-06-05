@@ -939,3 +939,19 @@ footer {
     opacity: 1;
   }
 }
+
+.quiz-progress {
+  height: 18px;
+  margin: 0 0 18px;
+  border: 3px solid #171717;
+  border-radius: 999px;
+  background: white;
+  overflow: hidden;
+}
+
+#quizProgressBar {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #a78bfa, #2dd4bf, #facc15);
+  transition: width 0.25s ease;
+}
