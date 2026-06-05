@@ -26,8 +26,13 @@ const result = document.querySelector("#result");
 function showQuestion() {
   quizCount.textContent = `Q${currentQuestion + 1} / ${questions.length}`;
   quizQuestion.textContent = questions[currentQuestion];
-}
 
+  const progressBar = document.querySelector("#quizProgressBar");
+  if (progressBar) {
+    const progress = ((currentQuestion + 1) / questions.length) * 100;
+    progressBar.style.width = `${progress}%`;
+  }
+}
 function answerQuiz(point) {
   score += point;
 
