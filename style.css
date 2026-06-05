@@ -886,3 +886,29 @@ footer {
   font-weight: 1000;
   box-shadow: 3px 3px 0 #171717;
 }
+
+.quiz-buttons button {
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-buttons button::after {
+  content: "→";
+  margin-left: 8px;
+  font-weight: 1000;
+}
+
+.quiz-buttons button:nth-child(1)::before {
+  content: "🔥";
+  margin-right: 6px;
+}
+
+.quiz-buttons button:nth-child(2)::before {
+  content: "🤔";
+  margin-right: 6px;
+}
+
+.quiz-buttons button:nth-child(3)::before {
+  content: "✋";
+  margin-right: 6px;
+}
