@@ -123,23 +123,37 @@ https://entp.jp/`;
   const xShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
 
   result.innerHTML = `
+  <div class="result-card">
+    <p class="result-label">あなたの結果</p>
+
     <h3>${diagnosis.title}</h3>
-    <p class="score">ENTP度：${diagnosis.percent}%</p>
-    <p><strong>${diagnosis.catch}</strong></p>
-    <p>${diagnosis.text}</p>
 
-    <div class="share-box">
-      <p>シェア用テキスト</p>
-      <textarea readonly>${shareText}</textarea>
-
-      <div class="share-actions">
-        <button type="button" id="copyShareButton">コピーする</button>
-        <a class="share-link" href="${xShareUrl}" target="_blank" rel="noopener">Xでシェア</a>
-      </div>
+    <div class="result-percent">
+      <span>${diagnosis.percent}</span>%
     </div>
 
-    <button type="button" id="retryButton">もう一回やる</button>
-  `;
+    <p class="result-catch">${diagnosis.catch}</p>
+    <p class="result-text">${diagnosis.text}</p>
+
+    <div class="result-badges">
+      <span>発想</span>
+      <span>議論</span>
+      <span>カオス</span>
+    </div>
+  </div>
+
+  <div class="share-box">
+    <p>シェア用テキスト</p>
+    <textarea readonly>${shareText}</textarea>
+
+    <div class="share-actions">
+      <button type="button" id="copyShareButton">コピーする</button>
+      <a class="share-link" href="${xShareUrl}" target="_blank" rel="noopener">Xでシェア</a>
+    </div>
+  </div>
+
+  <button type="button" id="retryButton">もう一回やる</button>
+`;
 
   document.querySelector("#retryButton").addEventListener("click", () => {
     currentQuestion = 0;
