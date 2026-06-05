@@ -51,8 +51,9 @@ function answerQuiz(point) {
         quizCard.classList.remove("flip-in");
       }, 250);
     } else {
-      showResult();
-    }
+  quizCard.classList.remove("flip-out", "flip-in");
+  showResult();
+}
   }, 220);
 }
 
@@ -139,7 +140,9 @@ function getDiagnosis(score) {
 }
 
 function showResult() {
-  document.querySelector(".quiz-card").style.display = "none";
+  const quizCard = document.querySelector(".quiz-card");
+  quizCard.style.display = "none";
+  quizCard.classList.remove("flip-out", "flip-in");
 
   const diagnosis = getDiagnosis(score);
 
@@ -152,10 +155,6 @@ https://entp.jp/`;
   const xShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
 
 const badgesHtml = diagnosis.badges
-  .map((badge) => `<span>${badge}</span>`)
-  .join("");
-  
-  const badgesHtml = diagnosis.badges
   .map((badge) => `<span>${badge}</span>`)
   .join("");
 
@@ -194,7 +193,9 @@ result.innerHTML = `
     currentQuestion = 0;
     score = 0;
     result.innerHTML = "";
-    document.querySelector(".quiz-card").style.display = "block";
+    const quizCard = document.querySelector(".quiz-card");
+quizCard.style.display = "";
+quizCard.classList.remove("flip-out", "flip-in");
     showQuestion();
   });
 
