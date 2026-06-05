@@ -152,7 +152,7 @@ function getDiagnosis(score) {
 function showResult() {
   const quizCard = document.querySelector(".quiz-card");
   quizCard.style.display = "none";
-  quizCard.classList.remove("flip-out", "flip-in");
+  quizCard.classList.remove("flip-out-left", "flip-out-right", "flip-in");
 
   const diagnosis = getDiagnosis(score);
 
