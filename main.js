@@ -43,7 +43,8 @@ function getDiagnosis(score) {
       title: "平和な一般人",
       percent,
       catch: "ENTP度はかなり低め。",
-      text: "ちゃんと空気を読めるし、無駄に議論を始めないタイプ。ENTPの暴れ方を見て『元気だな』と思う側。"
+      text: "ちゃんと空気を読めるし、無駄に議論を始めないタイプ。ENTPの暴れ方を見て『元気だな』と思う側。",
+      badges: ["平和", "常識", "安全圏"]
     };
   }
 
@@ -52,7 +53,8 @@ function getDiagnosis(score) {
       title: "穏やかな観察者",
       percent,
       catch: "ENTPを眺める才能あり。",
-      text: "自分から火種を作るタイプではないけど、面白い話にはちゃんと反応する。安全圏からカオスを楽しめる人。"
+      text: "自分から火種を作るタイプではないけど、面白い話にはちゃんと反応する。安全圏からカオスを楽しめる人。",
+      badges: ["観察", "聞き役", "ほどよい好奇心"]
     };
   }
 
@@ -61,7 +63,8 @@ function getDiagnosis(score) {
       title: "擬態ENTP",
       percent,
       catch: "ちょっとENTPっぽい。",
-      text: "発想力やツッコミ力はある。でもまだ理性が勝ってる。場を荒らす前に一回止まれる、かなり偉いタイプ。"
+      text: "発想力やツッコミ力はある。でもまだ理性が勝ってる。場を荒らす前に一回止まれる、かなり偉いタイプ。",
+      badges: ["擬態", "ツッコミ", "理性あり"]
     };
   }
 
@@ -70,7 +73,8 @@ function getDiagnosis(score) {
       title: "ひらめき型ENTP",
       percent,
       catch: "アイデアで場を動かすタイプ。",
-      text: "変な企画、謎の提案、急な方向転換が得意。思いついた瞬間が一番楽しい。継続は知らん。"
+      text: "変な企画、謎の提案、急な方向転換が得意。思いついた瞬間が一番楽しい。継続は知らん。",
+      badges: ["ひらめき", "企画", "飽き性"]
     };
   }
 
@@ -79,7 +83,8 @@ function getDiagnosis(score) {
       title: "屁理屈クリエイター",
       percent,
       catch: "理屈をこねる才能あり。",
-      text: "普通の話も別角度からこね始めるタイプ。相手を困らせるつもりはないのに、気づいたら議論になってる。"
+      text: "普通の話も別角度からこね始めるタイプ。相手を困らせるつもりはないのに、気づいたら議論になってる。",
+      badges: ["屁理屈", "別角度", "言葉遊び"]
     };
   }
 
@@ -88,7 +93,8 @@ function getDiagnosis(score) {
       title: "口だけ革命家",
       percent,
       catch: "発想だけなら世界を変えてる。",
-      text: "『これ作ったら面白くね？』が多いタイプ。実行する時もあるけど、次の面白そうなことにすぐ浮気する。"
+      text: "『これ作ったら面白くね？』が多いタイプ。実行する時もあるけど、次の面白そうなことにすぐ浮気する。",
+      badges: ["革命", "企画倒れ", "夢はでかい"]
     };
   }
 
@@ -97,7 +103,8 @@ function getDiagnosis(score) {
       title: "カオス討論家",
       percent,
       catch: "かなり危険なENTP圏内。",
-      text: "議論を遊び場にしてるタイプ。相手の前提を壊しながら、なぜか楽しそうにしてる。周囲はちょっと疲れる。"
+      text: "議論を遊び場にしてるタイプ。相手の前提を壊しながら、なぜか楽しそうにしてる。周囲はちょっと疲れる。",
+      badges: ["議論", "前提破壊", "カオス"]
     };
   }
 
@@ -105,7 +112,8 @@ function getDiagnosis(score) {
     title: "純正ENTP",
     percent,
     catch: "ENTP度、限界突破。",
-    text: "退屈を壊し、前提を疑い、思いつきで場を動かすタイプ。もはや議論の火種を持ち歩いている。危ない。"
+    text: "退屈を壊し、前提を疑い、思いつきで場を動かすタイプ。もはや議論の火種を持ち歩いている。危ない。",
+    badges: ["純正", "爆発", "危険人物"]
   };
 }
 
@@ -122,6 +130,10 @@ https://entp.jp/`;
 
   const xShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
 
+const badgesHtml = diagnosis.badges
+  .map((badge) => `<span>${badge}</span>`)
+  .join("");
+  
   result.innerHTML = `
   <div class="result-card">
     <p class="result-label">あなたの結果</p>
@@ -136,10 +148,8 @@ https://entp.jp/`;
     <p class="result-text">${diagnosis.text}</p>
 
     <div class="result-badges">
-      <span>発想</span>
-      <span>議論</span>
-      <span>カオス</span>
-    </div>
+  ${badgesHtml}
+</div>
   </div>
 
   <div class="share-box">
