@@ -33,14 +33,26 @@ function showQuestion() {
     progressBar.style.width = `${progress}%`;
   }
 }
+let isAnswering = false;
+
 function answerQuiz(point, direction = "left") {
+  if (isAnswering) return;
+  isAnswering = true;
+
   score += point;
 
   const quizCard = document.querySelector(".quiz-card");
 
   if (!quizCard) {
+    isAnswering = false;
     return;
   }
+
+  yesButton.disabled = true;
+  maybeButton.disabled = true;
+  noButton.disabled = true;
+
+  quizCard.classList.remove("flip-in", "flip-out-left", "flip-out-right");
 
   if (direction === "right") {
     quizCard.classList.add("flip-out-right");
@@ -59,9 +71,20 @@ function answerQuiz(point, direction = "left") {
 
       setTimeout(() => {
         quizCard.classList.remove("flip-in");
-      }, 250);
+
+        yesButton.disabled = false;
+        maybeButton.disabled = false;
+        noButton.disabled = false;
+        isAnswering = false;
+      }, 260);
     } else {
       quizCard.classList.remove("flip-out-left", "flip-out-right", "flip-in");
+
+      yesButton.disabled = false;
+      maybeButton.disabled = false;
+      noButton.disabled = false;
+      isAnswering = false;
+
       showResult();
     }
   }, 220);
