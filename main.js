@@ -223,15 +223,21 @@ result.innerHTML = `
 `;
 
   document.querySelector("#retryButton").addEventListener("click", () => {
-    currentQuestion = 0;
-    score = 0;
-    result.innerHTML = "";
-    const quizCard = document.querySelector(".quiz-card");
-quizCard.style.display = "";
-quizCard.classList.remove("flip-out", "flip-in");
-    showQuestion();
-  });
+  currentQuestion = 0;
+  score = 0;
+  result.innerHTML = "";
+  isAnswering = false;
 
+  const quizCard = document.querySelector(".quiz-card");
+  quizCard.style.display = "";
+  quizCard.classList.remove("flip-out-left", "flip-out-right", "flip-in");
+
+  yesButton.disabled = false;
+  maybeButton.disabled = false;
+  noButton.disabled = false;
+
+  showQuestion();
+});
   document.querySelector("#copyShareButton").addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(shareText);
