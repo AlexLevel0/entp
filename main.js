@@ -30,13 +30,25 @@ function showQuestion() {
 
 function answerQuiz(point) {
   score += point;
-  currentQuestion++;
 
-  if (currentQuestion < questions.length) {
-    showQuestion();
-  } else {
-    showResult();
-  }
+  const quizCard = document.querySelector(".quiz-card");
+  quizCard.classList.add("flip-out");
+
+  setTimeout(() => {
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+      showQuestion();
+      quizCard.classList.remove("flip-out");
+      quizCard.classList.add("flip-in");
+
+      setTimeout(() => {
+        quizCard.classList.remove("flip-in");
+      }, 250);
+    } else {
+      showResult();
+    }
+  }, 220);
 }
 
 function getDiagnosis(score) {
