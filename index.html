@@ -132,8 +132,27 @@
         <h2>ディベートゲーム</h2>
         <p>テーマを選んで、どちらかの立場で主張してみよう。</p>
 
-        <div id="debateGame"></div>
-      </article>
+        <div class="debate-card">
+  <p class="debate-count" id="debateCount">Theme 1</p>
+
+  <h3 id="debateTitle">お題が入ります</h3>
+
+  <div class="debate-choice-buttons">
+    <button type="button" id="choiceA">A</button>
+    <button type="button" id="choiceB">B</button>
+  </div>
+
+  <p class="selected-side" id="selectedSide">立場を選べ。逃げるな。</p>
+
+  <textarea id="debateText" placeholder="ここに主張を書け。遠慮したら負け。"></textarea>
+
+  <div class="debate-actions">
+    <button type="button" id="judgeButton">判定する</button>
+    <button type="button" id="nextDebateButton">次のお題</button>
+  </div>
+
+  <div id="debateResult" class="debate-result"></div>
+</div>
     </section>
 
     <section class="community">
