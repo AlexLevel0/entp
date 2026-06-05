@@ -919,8 +919,13 @@ footer {
   transition: transform 0.22s ease, opacity 0.22s ease;
 }
 
-.quiz-card.flip-out {
-  transform: translateX(-18px) rotate(-2deg);
+.quiz-card.flip-out-left {
+  transform: translateX(-22px) rotate(-2deg);
+  opacity: 0;
+}
+
+.quiz-card.flip-out-right {
+  transform: translateX(22px) rotate(2deg);
   opacity: 0;
 }
 
