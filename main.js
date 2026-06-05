@@ -33,27 +33,37 @@ function showQuestion() {
     progressBar.style.width = `${progress}%`;
   }
 }
-function answerQuiz(point) {
+function answerQuiz(point, direction = "left") {
   score += point;
 
   const quizCard = document.querySelector(".quiz-card");
-  quizCard.classList.add("flip-out");
+
+  if (!quizCard) {
+    return;
+  }
+
+  if (direction === "right") {
+    quizCard.classList.add("flip-out-right");
+  } else {
+    quizCard.classList.add("flip-out-left");
+  }
 
   setTimeout(() => {
     currentQuestion++;
 
     if (currentQuestion < questions.length) {
       showQuestion();
-      quizCard.classList.remove("flip-out");
+
+      quizCard.classList.remove("flip-out-left", "flip-out-right");
       quizCard.classList.add("flip-in");
 
       setTimeout(() => {
         quizCard.classList.remove("flip-in");
       }, 250);
     } else {
-  quizCard.classList.remove("flip-out", "flip-in");
-  showResult();
-}
+      quizCard.classList.remove("flip-out-left", "flip-out-right", "flip-in");
+      showResult();
+    }
   }, 220);
 }
 
@@ -209,9 +219,9 @@ quizCard.classList.remove("flip-out", "flip-in");
   });
 }
 
-yesButton.addEventListener("click", () => answerQuiz(2));
-maybeButton.addEventListener("click", () => answerQuiz(1));
-noButton.addEventListener("click", () => answerQuiz(0));
+yesButton.addEventListener("click", () => answerQuiz(2, "left"));
+maybeButton.addEventListener("click", () => answerQuiz(1, "left"));
+noButton.addEventListener("click", () => answerQuiz(0, "right"));
 
 showQuestion();
 
