@@ -114,9 +114,14 @@ function showResult() {
 
   const diagnosis = getDiagnosis(score);
 
-  const shareText = `私は「${diagnosis.title}」でした！\nENTP度：${diagnosis.percent}%\n${diagnosis.catch}\n#ENTPJP\nhttps://entp.jp/`;
-const xShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
-  
+  const shareText = `私は「${diagnosis.title}」でした！
+ENTP度：${diagnosis.percent}%
+${diagnosis.catch}
+#ENTPJP
+https://entp.jp/`;
+
+  const xShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+
   result.innerHTML = `
     <h3>${diagnosis.title}</h3>
     <p class="score">ENTP度：${diagnosis.percent}%</p>
@@ -126,7 +131,11 @@ const xShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(sh
     <div class="share-box">
       <p>シェア用テキスト</p>
       <textarea readonly>${shareText}</textarea>
-      <button type="button" id="copyShareButton">コピーする</button>
+
+      <div class="share-actions">
+        <button type="button" id="copyShareButton">コピーする</button>
+        <a class="share-link" href="${xShareUrl}" target="_blank" rel="noopener">Xでシェア</a>
+      </div>
     </div>
 
     <button type="button" id="retryButton">もう一回やる</button>
@@ -156,166 +165,27 @@ noButton.addEventListener("click", () => answerQuiz(0));
 
 showQuestion();
 
-function showQuestion() {
-  const q = questions[currentQuestion];
-
-  quizCount.textContent = `Q${currentQuestion + 1} / ${questions.length}`;
-  quizQuestion.textContent = q.text;
-}
-
-function answerQuiz(point) {
-  score += point;
-  currentQuestion++;
-
-  if (currentQuestion < questions.length) {
-    showQuestion();
-  } else {
-    showResult();
-  }
-}
-
-function showResult() {
-  document.querySelector(".quiz-card").style.display = "none";
-
-  let title = "";
-  let text = "";
-
-  if (score <= 4) {
-    title = "穏やかな観察者";
-    text = "ENTP度は低め。混沌を見るのは好きだけど、自分から火をつけるタイプではなさそう。";
-  } else if (score <= 8) {
-    title = "擬態ENTP";
-    text = "ENTPっぽさあり。議論や発想は好きだけど、まだ理性が勝っている。えらい。";
-  } else if (score <= 12) {
-    title = "かなりENTP";
-    text = "退屈を壊す才能あり。面白そうな話題を見ると、黙っていられないタイプ。";
-  } else {
-    title = "純正カオスENTP";
-    text = "危険。アイデアと屁理屈で場を支配するタイプ。議論の火種を持ち歩くな。";
-  }
-
-  result.innerHTML = `
-    <h3>${title}</h3>
-    <p>${text}</p>
-    <button type="button" id="retryButton">もう一回やる</button>
-  `;
-
-  document.querySelector("#retryButton").addEventListener("click", () => {
-    currentQuestion = 0;
-    score = 0;
-    result.innerHTML = "";
-    document.querySelector(".quiz-card").style.display = "block";
-    showQuestion();
-  });
-}
-
-yesButton.addEventListener("click", () => answerQuiz(2));
-maybeButton.addEventListener("click", () => answerQuiz(1));
-noButton.addEventListener("click", () => answerQuiz(0));
-
-showQuestion();
-
 const debateTopics = [
-  {
-    title: "一生スマホ禁止 vs 一生ゲーム禁止",
-    a: "スマホ禁止の方がマシ",
-    b: "ゲーム禁止の方がマシ"
-  },
-  {
-    title: "天才だけど飽き性 vs 凡人だけど継続力最強",
-    a: "天才だけど飽き性",
-    b: "凡人だけど継続力最強"
-  },
-  {
-    title: "全員が本音を言う世界 vs 全員が空気を読む世界",
-    a: "本音の世界",
-    b: "空気を読む世界"
-  },
-  {
-    title: "正論だけの人 vs ノリだけの人",
-    a: "正論だけの人",
-    b: "ノリだけの人"
-  },
-  {
-    title: "未来が読める能力 vs 相手の本音が読める能力",
-    a: "未来が読める能力",
-    b: "相手の本音が読める能力"
-  },
-  {
-    title: "一生退屈しないけど貧乏 vs 一生安定だけど退屈",
-    a: "一生退屈しないけど貧乏",
-    b: "一生安定だけど退屈"
-  },
-  {
-    title: "論破されるけど人気者 vs 論破できるけど嫌われ者",
-    a: "論破されるけど人気者",
-    b: "論破できるけど嫌われ者"
-  },
-  {
-    title: "才能だけで生きる vs 努力だけで生きる",
-    a: "才能だけで生きる",
-    b: "努力だけで生きる"
-  },
-  {
-    title: "友達100人 vs 親友1人",
-    a: "友達100人",
-    b: "親友1人"
-  },
-  {
-    title: "世界一面白い人 vs 世界一頭がいい人",
-    a: "世界一面白い人",
-    b: "世界一頭がいい人"
-  },
-  {
-    title: "ENTPだけの学校 vs ISTJだけの学校",
-    a: "ENTPだけの学校",
-    b: "ISTJだけの学校"
-  },
-  {
-    title: "ESTPと無人島 vs INTPと密室",
-    a: "ESTPと無人島",
-    b: "INTPと密室"
-  },
-  {
-    title: "MBTIは当たる vs MBTIはただの遊び",
-    a: "MBTIは当たる",
-    b: "MBTIはただの遊び"
-  },
-  {
-    title: "好きなことで稼ぐ vs 得意なことで稼ぐ",
-    a: "好きなことで稼ぐ",
-    b: "得意なことで稼ぐ"
-  },
-  {
-    title: "一生ツッコミ役 vs 一生ボケ役",
-    a: "一生ツッコミ役",
-    b: "一生ボケ役"
-  },
-  {
-    title: "自由だけど孤独 vs 不自由だけど仲間がいる",
-    a: "自由だけど孤独",
-    b: "不自由だけど仲間がいる"
-  },
-  {
-    title: "全員が自分を好きな世界 vs 自分が全員を好きな世界",
-    a: "全員が自分を好きな世界",
-    b: "自分が全員を好きな世界"
-  },
-  {
-    title: "すぐ飽きる天才 vs ずっと続ける凡人",
-    a: "すぐ飽きる天才",
-    b: "ずっと続ける凡人"
-  },
-  {
-    title: "会話が上手い人 vs 沈黙が心地いい人",
-    a: "会話が上手い人",
-    b: "沈黙が心地いい人"
-  },
-  {
-    title: "最強のひらめき vs 最強の実行力",
-    a: "最強のひらめき",
-    b: "最強の実行力"
-  }
+  { title: "一生スマホ禁止 vs 一生ゲーム禁止", a: "スマホ禁止の方がマシ", b: "ゲーム禁止の方がマシ" },
+  { title: "天才だけど飽き性 vs 凡人だけど継続力最強", a: "天才だけど飽き性", b: "凡人だけど継続力最強" },
+  { title: "全員が本音を言う世界 vs 全員が空気を読む世界", a: "本音の世界", b: "空気を読む世界" },
+  { title: "正論だけの人 vs ノリだけの人", a: "正論だけの人", b: "ノリだけの人" },
+  { title: "未来が読める能力 vs 相手の本音が読める能力", a: "未来が読める能力", b: "相手の本音が読める能力" },
+  { title: "一生退屈しないけど貧乏 vs 一生安定だけど退屈", a: "一生退屈しないけど貧乏", b: "一生安定だけど退屈" },
+  { title: "論破されるけど人気者 vs 論破できるけど嫌われ者", a: "論破されるけど人気者", b: "論破できるけど嫌われ者" },
+  { title: "才能だけで生きる vs 努力だけで生きる", a: "才能だけで生きる", b: "努力だけで生きる" },
+  { title: "友達100人 vs 親友1人", a: "友達100人", b: "親友1人" },
+  { title: "世界一面白い人 vs 世界一頭がいい人", a: "世界一面白い人", b: "世界一頭がいい人" },
+  { title: "ENTPだけの学校 vs ISTJだけの学校", a: "ENTPだけの学校", b: "ISTJだけの学校" },
+  { title: "ESTPと無人島 vs INTPと密室", a: "ESTPと無人島", b: "INTPと密室" },
+  { title: "MBTIは当たる vs MBTIはただの遊び", a: "MBTIは当たる", b: "MBTIはただの遊び" },
+  { title: "好きなことで稼ぐ vs 得意なことで稼ぐ", a: "好きなことで稼ぐ", b: "得意なことで稼ぐ" },
+  { title: "一生ツッコミ役 vs 一生ボケ役", a: "一生ツッコミ役", b: "一生ボケ役" },
+  { title: "自由だけど孤独 vs 不自由だけど仲間がいる", a: "自由だけど孤独", b: "不自由だけど仲間がいる" },
+  { title: "全員が自分を好きな世界 vs 自分が全員を好きな世界", a: "全員が自分を好きな世界", b: "自分が全員を好きな世界" },
+  { title: "すぐ飽きる天才 vs ずっと続ける凡人", a: "すぐ飽きる天才", b: "ずっと続ける凡人" },
+  { title: "会話が上手い人 vs 沈黙が心地いい人", a: "会話が上手い人", b: "沈黙が心地いい人" },
+  { title: "最強のひらめき vs 最強の実行力", a: "最強のひらめき", b: "最強の実行力" }
 ];
 
 let currentDebate = 0;
@@ -383,102 +253,69 @@ function judgeDebate() {
     return;
   }
 
-  let score = 0;
+  let debateScore = 0;
 
-  score += Math.min(40, text.length);
+  debateScore += Math.min(40, text.length);
 
   const entpWords = [
-  "でも",
-  "逆に",
-  "そもそも",
-  "つまり",
-  "例えば",
-  "なぜなら",
-  "本当に",
-  "前提",
-  "可能性",
-  "視点",
-  "論理",
-  "矛盾",
-  "仮に",
-  "一方で",
-  "だから",
-  "むしろ",
-  "要するに",
-  "根拠",
-  "証拠",
-  "例外",
-  "比較",
-  "構造",
-  "本質",
-  "問題",
-  "定義",
-  "目的",
-  "効率",
-  "リスク",
-  "メリット",
-  "デメリット",
-  "合理的",
-  "感情論",
-  "別に",
-  "それって",
-  "なんで",
-  "どうせ",
-  "ありえる",
-  "おかしくない",
-  "破綻",
-  "反論",
-  "結論"
-];
+    "でも", "逆に", "そもそも", "つまり", "例えば", "なぜなら",
+    "本当に", "前提", "可能性", "視点", "論理", "矛盾",
+    "仮に", "一方で", "だから", "むしろ", "要するに",
+    "根拠", "証拠", "例外", "比較", "構造", "本質",
+    "問題", "定義", "目的", "効率", "リスク", "メリット",
+    "デメリット", "合理的", "感情論", "別に", "それって",
+    "なんで", "どうせ", "ありえる", "おかしくない",
+    "破綻", "反論", "結論"
+  ];
 
   entpWords.forEach((word) => {
     if (text.includes(word)) {
-      score += 3;
+      debateScore += 3;
     }
   });
 
   if (text.includes("そもそも") || text.includes("前提")) {
-  score += 8;
-}
-
-if (text.includes("逆に") || text.includes("むしろ")) {
-  score += 6;
-}
-
-if (text.includes("例えば") || text.includes("仮に")) {
-  score += 6;
-}
-
-if (text.includes("？") || text.includes("?")) {
-  score += 8;
-}
-
-if (text.length >= 80) {
-  score += 10;
-}
-
-if (text.length >= 140) {
-  score += 10;
-}
-
-  if (text.includes("ｗ") || text.includes("笑")) {
-    score += 5;
+    debateScore += 8;
   }
 
-  if (score > 100) {
-    score = 100;
+  if (text.includes("逆に") || text.includes("むしろ")) {
+    debateScore += 6;
+  }
+
+  if (text.includes("例えば") || text.includes("仮に")) {
+    debateScore += 6;
+  }
+
+  if (text.includes("？") || text.includes("?")) {
+    debateScore += 8;
+  }
+
+  if (text.includes("ｗ") || text.includes("笑")) {
+    debateScore += 5;
+  }
+
+  if (text.length >= 80) {
+    debateScore += 10;
+  }
+
+  if (text.length >= 140) {
+    debateScore += 10;
+  }
+
+  if (debateScore > 100) {
+    debateScore = 100;
   }
 
   let title = "";
   let comment = "";
 
-  if (score <= 35) {
+  if (debateScore <= 35) {
     title = "平和な主張";
     comment = "まだ優しい。ENTPというより、ちゃんとした人間の文章。危険度は低い。";
-  } else if (score <= 60) {
+  } else if (debateScore <= 60) {
     title = "議論の芽あり";
     comment = "いい感じに理屈が出てる。あと少し前提を壊せばENTPっぽくなる。";
-  } else if (score <= 80) {
+  } else if (debateScore <= 80) {
     title = "かなりENTP";
     comment = "論点をずらしながらも妙に納得させるタイプ。相手はちょっと嫌がる。";
   } else {
@@ -487,37 +324,38 @@ if (text.length >= 140) {
   }
 
   const shareText = `ディベート結果は「${title}」でした！
-ENTPっぽさ：${score}%
+ENTPっぽさ：${debateScore}%
 ${comment}
 #ENTPJP
 https://entp.jp/`;
 
-const xShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+  const xShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
 
-debateResult.innerHTML = `
-  <h3>${title}</h3>
-  <p class="score">ENTPっぽさ：${score}%</p>
-  <p>${comment}</p>
+  debateResult.innerHTML = `
+    <h3>${title}</h3>
+    <p class="score">ENTPっぽさ：${debateScore}%</p>
+    <p>${comment}</p>
 
-  <div class="share-box debate-share-box">
-    <p>シェア用テキスト</p>
-    <textarea readonly>${shareText}</textarea>
+    <div class="share-box debate-share-box">
+      <p>シェア用テキスト</p>
+      <textarea readonly>${shareText}</textarea>
 
-    <div class="share-actions">
-      <button type="button" id="copyDebateShareButton">コピーする</button>
-      <a class="share-link" href="${xShareUrl}" target="_blank" rel="noopener">Xでシェア</a>
+      <div class="share-actions">
+        <button type="button" id="copyDebateShareButton">コピーする</button>
+        <a class="share-link" href="${xShareUrl}" target="_blank" rel="noopener">Xでシェア</a>
+      </div>
     </div>
-  </div>
-`;
+  `;
 
-document.querySelector("#copyDebateShareButton").addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(shareText);
-    document.querySelector("#copyDebateShareButton").textContent = "コピーした！";
-  } catch {
-    document.querySelector("#copyDebateShareButton").textContent = "コピー失敗";
-  }
-});
+  document.querySelector("#copyDebateShareButton").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(shareText);
+      document.querySelector("#copyDebateShareButton").textContent = "コピーした！";
+    } catch {
+      document.querySelector("#copyDebateShareButton").textContent = "コピー失敗";
+    }
+  });
+}
 
 function nextDebate() {
   let nextIndex = Math.floor(Math.random() * debateTopics.length);
