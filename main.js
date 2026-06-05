@@ -240,6 +240,81 @@ const debateTopics = [
     title: "未来が読める能力 vs 相手の本音が読める能力",
     a: "未来が読める能力",
     b: "相手の本音が読める能力"
+  },
+  {
+    title: "一生退屈しないけど貧乏 vs 一生安定だけど退屈",
+    a: "一生退屈しないけど貧乏",
+    b: "一生安定だけど退屈"
+  },
+  {
+    title: "論破されるけど人気者 vs 論破できるけど嫌われ者",
+    a: "論破されるけど人気者",
+    b: "論破できるけど嫌われ者"
+  },
+  {
+    title: "才能だけで生きる vs 努力だけで生きる",
+    a: "才能だけで生きる",
+    b: "努力だけで生きる"
+  },
+  {
+    title: "友達100人 vs 親友1人",
+    a: "友達100人",
+    b: "親友1人"
+  },
+  {
+    title: "世界一面白い人 vs 世界一頭がいい人",
+    a: "世界一面白い人",
+    b: "世界一頭がいい人"
+  },
+  {
+    title: "ENTPだけの学校 vs ISTJだけの学校",
+    a: "ENTPだけの学校",
+    b: "ISTJだけの学校"
+  },
+  {
+    title: "ESTPと無人島 vs INTPと密室",
+    a: "ESTPと無人島",
+    b: "INTPと密室"
+  },
+  {
+    title: "MBTIは当たる vs MBTIはただの遊び",
+    a: "MBTIは当たる",
+    b: "MBTIはただの遊び"
+  },
+  {
+    title: "好きなことで稼ぐ vs 得意なことで稼ぐ",
+    a: "好きなことで稼ぐ",
+    b: "得意なことで稼ぐ"
+  },
+  {
+    title: "一生ツッコミ役 vs 一生ボケ役",
+    a: "一生ツッコミ役",
+    b: "一生ボケ役"
+  },
+  {
+    title: "自由だけど孤独 vs 不自由だけど仲間がいる",
+    a: "自由だけど孤独",
+    b: "不自由だけど仲間がいる"
+  },
+  {
+    title: "全員が自分を好きな世界 vs 自分が全員を好きな世界",
+    a: "全員が自分を好きな世界",
+    b: "自分が全員を好きな世界"
+  },
+  {
+    title: "すぐ飽きる天才 vs ずっと続ける凡人",
+    a: "すぐ飽きる天才",
+    b: "ずっと続ける凡人"
+  },
+  {
+    title: "会話が上手い人 vs 沈黙が心地いい人",
+    a: "会話が上手い人",
+    b: "沈黙が心地いい人"
+  },
+  {
+    title: "最強のひらめき vs 最強の実行力",
+    a: "最強のひらめき",
+    b: "最強の実行力"
   }
 ];
 
@@ -370,12 +445,13 @@ function judgeDebate() {
 }
 
 function nextDebate() {
-  currentDebate++;
+  let nextIndex = Math.floor(Math.random() * debateTopics.length);
 
-  if (currentDebate >= debateTopics.length) {
-    currentDebate = 0;
+  while (nextIndex === currentDebate && debateTopics.length > 1) {
+    nextIndex = Math.floor(Math.random() * debateTopics.length);
   }
 
+  currentDebate = nextIndex;
   showDebate();
 }
 
